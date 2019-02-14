@@ -608,7 +608,7 @@ class SupervisedRegistrationManager(RegistrationManager):
         registration_admins = getattr(settings, 'REGISTRATION_ADMINS', None)
         if isinstance(registration_admins, str):  # We have a getter
             admins_getter = import_string(registration_admins)
-            admins = admins_getter()
+            admins = admins_getter(ctx_dict=ctx_dict)
         else:
             admins = registration_admins or getattr(settings, 'ADMINS', None)
         if not registration_admins:
